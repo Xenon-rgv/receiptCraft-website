@@ -1,152 +1,755 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Paul Receipt Craft</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🧾%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{--bg:rgba(255,255,255,.07);--c:rgba(255,255,255,.09);--t:#f4f1ff;--m:#c9bff0;--p:#a78bfa;--b:rgba(255,255,255,.18);--w:#fbbf24;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-*,*:before,*:after{box-sizing:inherit}
-body{margin:0;min-height:100vh;color:var(--t);font:15px/1.55 "Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;background:#0a0620}
-body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(520px circle at 12% 8%,rgba(139,92,246,.55),transparent 70%),radial-gradient(560px circle at 88% 14%,rgba(34,211,238,.38),transparent 70%),radial-gradient(620px circle at 70% 95%,rgba(244,63,94,.38),transparent 70%),#0a0620}
-header,.card,dialog,#pvbox,#toast{backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%)}
-header{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 18px;margin:10px 12px;border-radius:18px;background:rgba(255,255,255,.1);border:1px solid var(--b);position:sticky;top:calc(8px + env(safe-area-inset-top,0px));z-index:5;box-shadow:0 8px 32px rgba(0,0,0,.35)}
-.logo{font:700 18px Sora,sans-serif;display:flex;gap:9px;align-items:center}.logo i{width:20px;height:26px;background:linear-gradient(160deg,#c4b5fd,#22d3ee);clip-path:polygon(0 0,100% 0,100% 100%,83% 90%,66% 100%,50% 90%,33% 100%,16% 90%,0 100%)}
-nav{display:flex;gap:4px;flex-wrap:wrap}nav button{background:none;border:0;color:var(--m);padding:7px 14px;border-radius:99px;font:inherit;cursor:pointer}nav button.on{background:linear-gradient(135deg,#7c3aed,#c026d3);color:#fff;box-shadow:0 4px 16px rgba(192,38,211,.45)}
-main{max-width:1180px;margin:0 auto;padding:16px}.tag{color:var(--m);font-size:13px}
-.hero h1{font:700 clamp(28px,5vw,44px)/1.1 Sora,sans-serif;background:linear-gradient(90deg,#fff,#c4b5fd 50%,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent;margin:.2em 0 .1em}
-.card{background:var(--c);border:1px solid var(--b);border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:0 10px 36px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.2)}
-h1,h2,h3{font-family:Sora,sans-serif;margin:.2em 0 .5em}h2{font-size:21px}h3{font-size:16px}
-label{display:block;font-size:12.5px;color:var(--m);margin:8px 0 2px}
-input,select,textarea,button{font:inherit}input,select,textarea{width:100%;padding:9px 10px;border:1px solid var(--b);border-radius:12px;background:rgba(255,255,255,.08);color:var(--t)}
-input::placeholder,textarea::placeholder{color:#a79bd6}option{background:#1b1240;color:#fff}
-input[type=checkbox]{width:auto;accent-color:#c026d3}input[type=color]{padding:2px;height:36px}
-:focus-visible{outline:2px solid #67e8f9;outline-offset:2px}
-.btn{background:linear-gradient(135deg,#7c3aed,#c026d3);color:#fff;border:0;padding:9px 16px;border-radius:12px;cursor:pointer;font-weight:600;box-shadow:0 6px 20px rgba(124,58,237,.45);transition:transform .15s}.btn:hover{transform:translateY(-1px)}.btn.g{background:rgba(255,255,255,.1);border:1px solid var(--b);box-shadow:none}.btn.s{padding:4px 10px;font-size:12.5px}.btn.d{background:#e11d48}
-.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.flex{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.ed{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
-@media(max-width:860px){.ed{grid-template-columns:1fr}.ed.pv #form{display:none}.ed:not(.pv) #pvw{display:none}}
-@media(min-width:861px){.mob{display:none}}
-.item{border:1px solid var(--b);border-radius:14px;padding:10px;margin:8px 0;background:rgba(255,255,255,.04)}
-table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.12);font-size:13.5px}th{color:var(--m)}td.r,th.r{text-align:right}.tw{overflow-x:auto}
-.pill{font-size:12px;padding:2px 10px;border-radius:99px;background:rgba(255,255,255,.12);border:1px solid var(--b)}
-.stat{font:700 28px Sora,sans-serif;color:#67e8f9}.err{color:#fda4af;font-size:13px;margin:6px 0}
-#toast{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:rgba(20,10,50,.85);border:1px solid var(--b);color:#fff;padding:10px 18px;border-radius:14px;display:none;z-index:20}
-dialog{border:1px solid var(--b);border-radius:20px;background:rgba(22,14,52,.85);color:var(--t);max-width:min(96vw,780px);width:100%;padding:16px}dialog::backdrop{background:rgba(5,2,20,.55);backdrop-filter:blur(6px)}
-#pvbox{overflow:auto;background:rgba(255,255,255,.06);border:1px solid var(--b);border-radius:16px;padding:14px;max-height:80vh}
-.rc{background:var(--rb);color:var(--rt);font-family:var(--rf);font-size:var(--rs);padding:26px;margin:0 auto;width:var(--rw);max-width:100%;box-shadow:0 18px 50px rgba(0,0,0,.45);overflow:hidden;overflow-wrap:anywhere;border-radius:6px;line-height:1.45}
-.rc .band{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:-26px -26px 16px;padding:20px 26px;background:linear-gradient(120deg,var(--rp),var(--r2));color:var(--ron)}
-.rc.mn .band{background:none;color:var(--rt);border-bottom:3px solid var(--rp)}
-.rc .bl{display:flex;align-items:center;gap:10px}.rc .bl img{max-height:48px;max-width:130px;background:#fff;border-radius:6px;padding:3px}.rc .mk{opacity:.9}
-.rc .bn{font-size:1.25em}.rc .sm{font-size:.82em;opacity:.85}.rc .br{text-align:right}.rc .ti{font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-.rc .ban{border:2px dashed var(--rp);color:var(--rp);text-align:center;padding:5px;margin:8px 0;font-weight:700}
-.rc .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;align-items:center;padding:10px 12px;border-radius:10px;background:var(--rp9)}
-.rc .meta span,.rc .bx span{display:block;font-size:.75em;opacity:.65}
-.rc .stamp{justify-self:end;border:2.5px solid;border-radius:8px;padding:3px 12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;transform:rotate(-5deg);text-align:center}
-.rc .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}.rc.thermal .g2{grid-template-columns:1fr}
-.rc .bx{border-left:3px solid var(--rp);padding-left:10px}
-.rc table{width:100%;border-collapse:collapse}.rc .it th{background:var(--rp);color:var(--ron);padding:8px;text-align:left;font-size:inherit;border:0}.rc .it th.r,.rc .it td.r{text-align:right}.rc .it td{padding:8px;font-size:inherit;border-bottom:1px solid rgba(128,128,128,.25)}.rc .it tr:nth-child(even) td{background:var(--rp5)}
-.rc .tot{border-radius:10px;border:1px solid var(--rp3);overflow:hidden}.rc .tot>div{display:flex;justify-content:space-between;padding:6px 12px;gap:10px}.rc .tot .gt{background:linear-gradient(120deg,var(--rp),var(--r2));color:var(--ron);font-size:1.15em;font-weight:700}
-.rc .sig{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-top:22px}.rc .sig div{border-top:1px solid currentColor;padding-top:4px;min-width:150px;font-size:.8em;opacity:.8}
-.rc .fn{text-align:center;margin-top:14px}.rc .dc{text-align:center;font-size:.7em;opacity:.55;margin-top:6px}
-.rc.thermal .band{flex-direction:column;text-align:center}.rc.thermal .br{text-align:center}
-#pa{display:none}
-@media print{body:before{display:none}body{background:#fff}body>*:not(#pa){display:none!important}#pa{display:block}.rc{box-shadow:none;width:100%;max-width:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}.rc tr{break-inside:avoid}}
-</style><script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script></head><body>
-<header><div class="logo"><i></i>Paul Receipt Craft</div><nav id="nav"></nav><span class="tag">Demo mode · data stays in this browser</span></header>
-<main id="main"></main><div id="toast" role="status"></div><dialog id="dlg"></dialog><div id="pa"></div><style id="pg"></style>
-<script>
-const $=s=>document.querySelector(s),uid=()=>Math.random().toString(36).slice(2,10);
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const LOC={NGN:'en-NG',USD:'en-US',GBP:'en-GB',EUR:'en-IE',GHS:'en-GH',KES:'en-KE',ZAR:'en-ZA',CAD:'en-CA',AUD:'en-AU'};
-const fmt=(c,cur)=>new Intl.NumberFormat(LOC[cur]||'en-US',{style:'currency',currency:cur||'NGN'}).format(c/100);
-const toC=v=>Math.round((parseFloat(v)||0)*100),clone=o=>JSON.parse(JSON.stringify(o));
-const PRE={'Aurora':['#6d28d9','#ffffff','#1e1b3a','#0ea5e9'],'Midnight':['#a78bfa','#0f0a2a','#ede9fe','#22d3ee'],'Black & Gold':['#b8860b','#111111','#f2ead3','#f5d061'],'Ocean':['#0369a1','#f0f9ff','#0c2a3d','#06b6d4'],'Rose':['#be185d','#fff7fa','#3b0a22','#fb7185'],'Emerald':['#047857','#f2fbf8','#10302b','#34d399']};
-const FONTS={Serif:'Georgia,serif',Sans:'"Segoe UI",system-ui,sans-serif',Mono:'"Courier New",monospace'};
-const def=()=>({biz:{name:'',email:'',phone:'',addr:'',tin:'',cur:'NGN',taxOn:false,taxName:'Tax',taxRate:'0',prefix:'RCPT',foot:'Thank you for your business.',logo:''},receipts:[],audit:[],tpl:{pc:'#6d28d9',pc2:'#0ea5e9',bg:'#ffffff',tx:'#1e1b3a',font:'Sans',size:13,paper:'A5',layout:'premium',show:{logo:1,contact:1,cust:1,tax:1,foot:1,code:1}}});
-let S;try{S=JSON.parse(localStorage.getItem('rc1'))||def()}catch(e){S=def()}
-if(!S.tpl.pc2)S.tpl=def().tpl;
-const save=()=>{try{localStorage.setItem('rc1',JSON.stringify(S));return true}catch(e){toast('Storage full. Use a smaller logo or export CSV and clear old drafts.');return false}};
-function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(t._h);t._h=setTimeout(()=>t.style.display='none',3200)}
-const log=(ev,no)=>{S.audit.push({t:new Date().toISOString(),ev,no});};
-function calc(r){const rate=S.biz.taxOn?(parseFloat(r.b?.taxRate??S.biz.taxRate)||0):0,cl=x=>Math.min(100,Math.max(0,parseFloat(x)||0));let sub=0,idisc=0;
- r.items.forEach(i=>{const g=Math.round((parseFloat(i.q)||0)*toC(i.p)),d=Math.round(g*cl(i.d)/100);i._n=g-d;sub+=g;idisc+=d});
- const net=sub-idisc,od=r.odT==='pct'?Math.round(net*cl(r.odV)/100):Math.min(net,toC(r.odV)),taxable=net-od,chg=toC(r.chg);let tax,total;
- if(r.inc){tax=taxable-Math.round(taxable/(1+rate/100));total=taxable+chg}else{tax=Math.round(taxable*rate/100);total=taxable+tax+chg}
- const paid=toC(r.paid),ref=(r.refunds||[]).reduce((a,x)=>a+x.a,0);
- return{sub,idisc,od,disc:idisc+od,base:r.inc?taxable-tax:taxable,tax,chg,total,paid,ref,bal:Math.max(0,total-paid),rate}}
-const stat=r=>{const k=calc(r);return r.state==='void'?'Voided':k.ref>0?(k.ref>=k.paid?'Refunded':'Partially Refunded'):{paid:'Paid',partial:'Partially Paid',unpaid:'Unpaid'}[r.ps]};
-function nextNo(){const y=new Date().getFullYear(),p=`${S.biz.prefix||'RCPT'}-${y}-`;let m=0;S.receipts.forEach(r=>{if(r.no.startsWith(p))m=Math.max(m,parseInt(r.no.slice(p.length))||0)});return p+String(m+1).padStart(4,'0')}
-function blank(){return{id:uid(),no:nextNo(),date:new Date().toISOString().slice(0,10),ref:'',method:'Bank transfer',ps:'paid',paid:'',cust:{name:'Walk-in customer',email:'',phone:''},items:[{n:'',d:'',c:'',q:'1',p:'',dc:'0'}].map(i=>({...i,d:'0',desc:''})),odT:'pct',odV:'',inc:false,chg:'',notes:'',state:'draft',refunds:[],b:{cur:S.biz.cur,taxRate:S.biz.taxRate,taxName:S.biz.taxName}}}
-const rg=(h,a)=>{const [r,g,b]=[1,3,5].map(i=>parseInt(h.substr(i,2),16));return `rgba(${r},${g},${b},${a})`};
-const onC=h=>{const [r,g,b]=[1,3,5].map(i=>parseInt(h.substr(i,2),16));return r*.299+g*.587+b*.114>150?'#111':'#fff'};
-const O='zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen'.split(' '),TY='  twenty thirty forty fifty sixty seventy eighty ninety'.split(' ');
-function wd(n){if(n<20)return O[n];if(n<100)return TY[n/10|0]+(n%10?'-'+O[n%10]:'');if(n<1e3)return O[n/100|0]+' hundred'+(n%100?' and '+wd(n%100):'');for(const [v,s] of [[1e9,'billion'],[1e6,'million'],[1e3,'thousand']])if(n>=v)return wd(n/v|0)+' '+s+(n%v?' '+wd(n%v):'')}
-const CN={NGN:['naira','kobo'],USD:['dollars','cents'],GBP:['pounds','pence'],EUR:['euros','cents'],GHS:['cedis','pesewas'],KES:['shillings','cents'],ZAR:['rand','cents'],CAD:['dollars','cents'],AUD:['dollars','cents']};
-const inW=(c,cur)=>{const [a,b]=CN[cur]||['',''],w=wd(Math.floor(c/100))||'',k=c%100;return w.charAt(0).toUpperCase()+w.slice(1)+' '+a+(k?` and ${wd(k)} ${b}`:'')+' only'};
-function rcpt(r){const t=S.tpl,b=S.biz,k=calc(r),cur=r.b?.cur||b.cur,f=x=>fmt(x,cur),sh=t.show,un=r.ps==='unpaid',W={A4:'720px',A5:'540px',Receipt:'400px',Thermal:'300px'}[t.paper],th=t.layout==='thermal'||t.paper==='Thermal',mn=t.layout==='minimal',tn=r.b?.taxName||b.taxName,p2=t.pc2||t.pc,s=stat(r),sc={Paid:'#15803d','Partially Paid':'#b45309',Unpaid:'#b91c1c',Voided:'#6b7280',Refunded:'#7c3aed','Partially Refunded':'#7c3aed'}[s];
- const st=`--rb:${t.bg};--rt:${t.tx};--rp:${t.pc};--rp9:${rg(t.pc,.09)};--rp5:${rg(t.pc,.05)};--rp3:${rg(t.pc,.3)};--r2:${p2};--ron:${onC(t.pc)};--rf:${FONTS[t.font]};--rs:${t.size}px;--rw:${W}`;
- return `<div class="rc ${th?'thermal':''} ${mn?'mn':''}" style="${st}"><div class="band"><div class="bl">${sh.logo&&b.logo?`<img src="${b.logo}" alt="">`:`<svg class="mk" viewBox="0 0 28 36" width="28" height="36"><path d="M0 0h28v36l-4.7-3.6L18.7 36 14 32.4 9.3 36l-4.6-3.6L0 36z" fill="${mn?t.tx:onC(t.pc)}"/></svg>`}<div><b class="bn">${esc(b.name||'Your business name')}</b>${sh.contact&&b.tin?`<div class="sm">Tax ID: ${esc(b.tin)}</div>`:''}</div></div><div class="br"><div class="ti">${un?'Payment request':'Payment receipt'}</div><div class="sm">No. ${esc(r.no)}</div></div></div>
- ${r.state==='draft'?'<div class="ban">DRAFT: not yet issued</div>':''}${un?'<div class="ban">NOT A RECEIPT: no payment has been received</div>':''}
- <div class="meta"><div><span>Date</span>${esc(r.date)}</div><div><span>Reference</span>${esc(r.ref||'None')}</div><div><span>Payment method</span>${esc(r.method)}</div><div class="stamp" style="color:${sc}">${esc(s)}</div></div>
- <div class="g2">${sh.contact?`<div class="bx"><span>From</span><b>${esc(b.name||'Your business')}</b><div>${esc(b.addr)}</div><div>${esc(b.phone)}</div><div>${esc(b.email)}</div></div>`:''}${sh.cust?`<div class="bx"><span>Billed to</span><b>${esc(r.cust.name||'Walk-in customer')}</b><div>${esc(r.cust.email)}</div><div>${esc(r.cust.phone)}</div></div>`:''}</div>
- <table class="it"><tr><th>#</th><th>Item</th><th class="r">Qty</th><th class="r">Unit price</th><th class="r">Amount</th></tr>${r.items.filter(i=>i.n).map((i,n)=>`<tr><td>${n+1}</td><td><b>${esc(i.n)}</b>${sh.code&&i.c?` <small>(${esc(i.c)})</small>`:''}${i.desc?`<br><small>${esc(i.desc)}</small>`:''}${parseFloat(i.d)>0?`<br><small>${esc(i.d)}% discount applied</small>`:''}</td><td class="r">${esc(i.q)}</td><td class="r">${f(toC(i.p))}</td><td class="r">${f(i._n??0)}</td></tr>`).join('')}</table>
- <div class="g2"><div class="bx"><span>Amount in words</span><i>${esc(inW(k.total,cur))}</i>${r.notes?`<div style="margin-top:6px"><span>Notes</span>${esc(r.notes)}</div>`:''}</div><div class="tot"><div><span>Subtotal</span><span>${f(k.sub)}</span></div>${k.disc?`<div><span>Discount</span><span>-${f(k.disc)}</span></div>`:''}${sh.tax&&b.taxOn?`<div><span>${esc(tn)} (${k.rate}%${r.inc?', included':''})</span><span>${f(k.tax)}</span></div>`:''}${k.chg?`<div><span>Delivery / charges</span><span>${f(k.chg)}</span></div>`:''}<div class="gt"><span>Total</span><span>${f(k.total)}</span></div><div><span>Paid (${esc(r.method)})</span><span>${f(k.paid)}</span></div>${k.ref?`<div><span>Refunded</span><span>-${f(k.ref)}</span></div>`:''}<div><b>Balance due</b><b>${f(k.bal)}</b></div></div></div>
- <div class="sig"><div>Authorized signature</div><div>Customer</div></div>${sh.foot?`<p class="fn">${esc(b.foot)}</p>`:''}<p class="dc">Issued with Paul Receipt Craft. A record of the seller's sale; not a bank, payment-provider or tax-authority document.</p></div>`}
-async function saveFile(name,blob){try{const d=window.claude&&await claude.use('downloads');if(d){await d.save({filename:name,data:blob});return true}}catch(e){if(e&&e.code==='declined')return false}
- const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();return true}
-async function pdfR(r,btn){if(!window.html2canvas||!window.jspdf)return toast('PDF tools did not load. Check your connection or use Print.');
- const t=S.tpl,PW={A4:210,A5:148,Receipt:105,Thermal:80}[t.paper],FH={A4:297,A5:210}[t.paper];if(btn)btn.disabled=true;toast('Preparing PDF...');
- const host=document.createElement('div');host.style.cssText='position:fixed;left:-10000px;top:0';host.innerHTML=rcpt(r);document.body.appendChild(host);
- try{const el=host.firstChild;el.style.boxShadow='none';el.style.borderRadius='0';const cv=await html2canvas(el,{scale:3,backgroundColor:t.bg,useCORS:true,logging:false}),img=cv.toDataURL('image/jpeg',.95),ih=cv.height*PW/cv.width,ph=FH||ih,pdf=new jspdf.jsPDF({unit:'mm',format:[PW,ph],orientation:ph>PW?'p':'l'});let pg=0;
-  const draw=()=>{pdf.setFillColor(t.bg);pdf.rect(0,0,PW,ph,'F');pdf.addImage(img,'JPEG',0,-ph*pg,PW,ih)};draw();while(ih-ph*(pg+1)>1){pg++;pdf.addPage([PW,ph]);draw()}
-  if(await saveFile(String(r.no).replace(/[^\w.-]+/g,'_')+'.pdf',pdf.output('blob')))toast('PDF saved.')}
- catch(e){toast('Could not create the PDF. Try Print instead.')}finally{host.remove();if(btn)btn.disabled=false}}
-function printR(r){$('#pg').textContent=`@media print{@page{margin:10mm;size:${S.tpl.paper==='A4'?'A4':S.tpl.paper==='A5'?'A5':'80mm auto'}}}`;$('#pa').innerHTML=rcpt(r);try{window.print();toast('If no print dialog appears, use Download PDF.')}catch(e){toast('Printing is blocked here. Use Download PDF.')}}
-function view(r){const k=calc(r),h=S.audit.filter(a=>a.no===r.no);const d=$('#dlg');d.innerHTML=`<div id="pvbox">${rcpt(r)}</div><details><summary>Audit trail (${h.length})</summary>${h.map(a=>`<div class="tag">${esc(a.t.slice(0,16).replace('T',' '))} · ${esc(a.ev)}</div>`).join('')}</details><div class="flex" style="margin-top:8px"><button class="btn" id="vd">Download PDF</button><button class="btn g" id="vp">Print</button><button class="btn g" onclick="$('#dlg').close()">Close</button></div>`;d.showModal();$('#vp').onclick=()=>printR(r);$('#vd').onclick=e=>pdfR(r,e.target)}
-const V={};let cur,view_='dash';
-function go(v){view_=v;$('#nav').innerHTML=[['dash','Overview'],['new','Create receipt'],['list','Receipts'],['cust','Customers'],['set','Business']].map(([k,l])=>`<button class="${k===v?'on':''}" onclick="go('${k}')">${l}</button>`).join('');if(v==='new'&&!cur)cur=blank();V[v]();scrollTo(0,0)}
-V.dash=()=>{const R=S.receipts.filter(r=>r.state==='issued'),m=new Date().toISOString().slice(0,7),tot={};R.forEach(r=>{const k=calc(r),c=r.b.cur;tot[c]=(tot[c]||0)+k.total-k.ref});
- $('#main').innerHTML=`<div class="hero"><h1>Paul Receipt Craft</h1><p class="tag">Every payment. Professionally documented.</p></div>${!S.biz.name?`<div class="card"><b>Start here:</b> add your business details so receipts carry your name. <button class="btn s" onclick="go('set')">Set up business</button></div>`:''}<div class="row"><div class="card"><div class="tag">Receipts created</div><div class="stat">${S.receipts.length}</div></div><div class="card"><div class="tag">This month</div><div class="stat">${S.receipts.filter(r=>r.date.startsWith(m)).length}</div></div><div class="card"><div class="tag">Recorded value (issued, net of refunds)</div><div class="stat" style="font-size:17px">${Object.entries(tot).map(([c,v])=>fmt(v,c)).join('<br>')||'None yet'}</div></div></div><div class="card"><h2>Recent receipts</h2>${S.receipts.length?tbl(S.receipts.slice(-5).reverse(),1):'<p class="tag">No receipts yet. Create your first in about two minutes.</p>'}<button class="btn" onclick="cur=null;go('new')">Create receipt</button></div>`}
-function tbl(L,mini){return `<div class="tw"><table><tr><th>No.</th><th>Customer</th><th>Date</th><th class="r">Total</th><th>Status</th><th>State</th>${mini?'':'<th></th>'}</tr>${L.map(r=>{const k=calc(r);return `<tr><td>${esc(r.no)}</td><td>${esc(r.cust.name)}</td><td>${esc(r.date)}</td><td class="r">${fmt(k.total,r.b.cur)}</td><td>${stat(r)}</td><td><span class="pill">${r.state}</span></td>${mini?'':`<td class="flex"><button class="btn g s" onclick="A('v','${r.id}')">View</button><button class="btn g s" onclick="A('p','${r.id}')">Print</button><button class="btn g s" onclick="A('c','${r.id}')">Duplicate</button>${r.state==='draft'?`<button class="btn g s" onclick="A('e','${r.id}')">Edit</button><button class="btn g s" onclick="A('x','${r.id}')">Delete</button>`:''}${r.state==='issued'?`<button class="btn g s" onclick="A('f','${r.id}')">Refund</button><button class="btn g s" onclick="A('o','${r.id}')">Void</button>`:''}</td>`}</tr>`}).join('')}</table></div>`}
-function A(a,id){const r=S.receipts.find(x=>x.id===id);if(a==='v')view(r);if(a==='p')printR(r);
- if(a==='c'){cur=clone(r);cur.id=uid();cur.no=nextNo();cur.state='draft';cur.refunds=[];cur.date=new Date().toISOString().slice(0,10);toast('Duplicated as a new draft with a new number.');go('new')}
- if(a==='e'){cur=clone(r);go('new')}
- if(a==='x'&&confirm('Delete this draft?')){S.receipts=S.receipts.filter(x=>x.id!==id);log('Draft deleted',r.no);save();V.list()}
- if(a==='o'&&confirm('Void this receipt? It stays on record, marked VOID.')){r.state='void';log('Voided',r.no);save();V.list()}
- if(a==='f'){const k=calc(r),max=k.paid-k.ref,v=prompt(`Refund amount (max ${fmt(max,r.b.cur)}). The original sale is kept; the refund is recorded separately.`);if(v===null)return;const a2=toC(v);if(a2<=0||a2>max)return toast('Enter an amount between 0 and the refundable balance.');r.refunds.push({a:a2,t:new Date().toISOString()});log('Refund '+fmt(a2,r.b.cur),r.no);save();V.list();toast('Refund recorded.')}}
-V.list=()=>{const q=(V.q||'').toLowerCase(),fs=V.fs||'',L=S.receipts.filter(r=>(!q||(r.no+r.cust.name).toLowerCase().includes(q))&&(!fs||r.state===fs)).slice().reverse();
- $('#main').innerHTML=`<h2>All receipts</h2><div class="card"><div class="flex"><input id="q" placeholder="Search number or customer" value="${esc(V.q||'')}" style="max-width:260px"><select id="fs" style="max-width:160px"><option value="">All states</option>${['draft','issued','void'].map(s=>`<option ${s===fs?'selected':''}>${s}</option>`).join('')}</select><button class="btn g" id="csv">Export CSV</button></div></div><div class="card">${L.length?tbl(L):'<p class="tag">Nothing matches. Create a receipt or clear the filters.</p>'}</div>`;
- $('#q').oninput=e=>{V.q=e.target.value;const p=e.target.selectionStart;V.list();$('#q').focus();$('#q').setSelectionRange(p,p)};$('#fs').onchange=e=>{V.fs=e.target.value;V.list()};
- $('#csv').onclick=()=>{const sf=v=>{v=String(v);if(/^[=+\-@]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'};const rows=[['Number','Date','Customer','State','Status','Currency','Total','Paid','Balance','Refunded','Reference']].concat(L.map(r=>{const k=calc(r);return [r.no,r.date,r.cust.name,r.state,stat(r),r.b.cur,k.total/100,k.paid/100,k.bal/100,k.ref/100,r.ref]}));saveFile('receipts.csv',new Blob([rows.map(x=>x.map(sf).join(',')).join('\n')],{type:'text/csv'})).then(ok=>ok&&toast('CSV saved.'))}}
-V.cust=()=>{const m={};S.receipts.filter(r=>r.state!=='void').forEach(r=>{const n=r.cust.name||'Walk-in customer',k=calc(r);(m[n+'|'+r.b.cur]=m[n+'|'+r.b.cur]||{n,c:r.b.cur,cnt:0,tot:0,bal:0,e:r.cust.email}).cnt++;const o=m[n+'|'+r.b.cur];o.tot+=k.total;o.bal+=k.bal});
- $('#main').innerHTML=`<h2>Customers</h2><div class="card">${Object.values(m).length?`<div class="tw"><table><tr><th>Name</th><th>Email</th><th class="r">Receipts</th><th class="r">Total</th><th class="r">Outstanding</th></tr>${Object.values(m).map(o=>`<tr><td>${esc(o.n)}</td><td>${esc(o.e)}</td><td class="r">${o.cnt}</td><td class="r">${fmt(o.tot,o.c)}</td><td class="r">${fmt(o.bal,o.c)}</td></tr>`).join('')}</table></div>`:'<p class="tag">Customers appear here automatically from your receipts. Only details you type are stored.</p>'}</div>`}
-V.set=()=>{const b=S.biz,F=(k,l,ty='text')=>`<div><label for="s_${k}">${l}</label><input id="s_${k}" data-k="${k}" type="${ty}" value="${esc(b[k])}"></div>`;
- $('#main').innerHTML=`<h2>Business profile</h2><div class="card" id="bf"><div class="row">${F('name','Business name')}${F('email','Email','email')}${F('phone','Phone')}${F('addr','Address')}${F('tin','Registration / tax ID (optional)')}${F('prefix','Receipt number prefix')}${F('foot','Receipt footer message')}<div><label for="s_cur">Currency</label><select id="s_cur" data-k="cur">${Object.keys(LOC).map(c=>`<option ${c===b.cur?'selected':''}>${c}</option>`).join('')}</select></div></div><label><input type="checkbox" id="s_tax" ${b.taxOn?'checked':''}> Charge tax on receipts</label><div class="row">${F('taxName','Tax name (e.g. VAT)')}${F('taxRate','Tax rate % (you set this; none is assumed)','number')}</div><label for="lg">Logo (PNG, JPG or WebP, max 300 KB)</label><input type="file" id="lg" accept="image/png,image/jpeg,image/webp">${b.logo?`<p><img src="${b.logo}" alt="Current logo" style="max-height:50px"> <button class="btn g s" id="rl">Remove</button></p>`:''}<p class="tag">Changes save automatically. New receipts use these details; issued receipts keep their own currency and tax rate.</p></div>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Paul Receipt Craft</title>
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🧾%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: rgba(255, 255, 255, .07);
+            --c: rgba(255, 255, 255, .09);
+            --t: #f4f1ff;
+            --m: #c9bff0;
+            --p: #a78bfa;
+            --b: rgba(255, 255, 255, .18);
+            --w: #fbbf24;
+            color-scheme: dark;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--t);
+            font: 15px/1.55 "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+            background: #0a0620
+        }
+
+        body:before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(520px circle at 12% 8%, rgba(139, 92, 246, .55), transparent 70%), radial-gradient(560px circle at 88% 14%, rgba(34, 211, 238, .38), transparent 70%), radial-gradient(620px circle at 70% 95%, rgba(244, 63, 94, .38), transparent 70%), #0a0620
+        }
+
+        header,
+        .card,
+        dialog,
+        #pvbox,
+        #toast {
+            backdrop-filter: blur(18px) saturate(150%);
+            -webkit-backdrop-filter: blur(18px) saturate(150%)
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding: 10px 18px;
+            margin: 10px 12px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid var(--b);
+            position: sticky;
+            top: calc(8px + env(safe-area-inset-top, 0px));
+            z-index: 5;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .35)
+        }
+
+        .logo {
+            font: 700 18px Sora, sans-serif;
+            display: flex;
+            gap: 9px;
+            align-items: center
+        }
+
+        .logo i {
+            width: 20px;
+            height: 26px;
+            background: linear-gradient(160deg, #c4b5fd, #22d3ee);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 83% 90%, 66% 100%, 50% 90%, 33% 100%, 16% 90%, 0 100%)
+        }
+
+        nav {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap
+        }
+
+        nav button {
+            background: none;
+            border: 0;
+            color: var(--m);
+            padding: 7px 14px;
+            border-radius: 99px;
+            font: inherit;
+            cursor: pointer
+        }
+
+        nav button.on {
+            background: linear-gradient(135deg, #7c3aed, #c026d3);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(192, 38, 211, .45)
+        }
+
+        main {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 16px
+        }
+
+        .tag {
+            color: var(--m);
+            font-size: 13px
+        }
+
+        .hero h1 {
+            font: 700 clamp(28px, 5vw, 44px)/1.1 Sora, sans-serif;
+            background: linear-gradient(90deg, #fff, #c4b5fd 50%, #67e8f9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: .2em 0 .1em
+        }
+
+        .card {
+            background: var(--c);
+            border: 1px solid var(--b);
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 14px;
+            box-shadow: 0 10px 36px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255, 255, 255, .2)
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: Sora, sans-serif;
+            margin: .2em 0 .5em
+        }
+
+        h2 {
+            font-size: 21px
+        }
+
+        h3 {
+            font-size: 16px
+        }
+
+        label {
+            display: block;
+            font-size: 12.5px;
+            color: var(--m);
+            margin: 8px 0 2px
+        }
+
+        input,
+        select,
+        textarea,
+        button {
+            font: inherit
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 9px 10px;
+            border: 1px solid var(--b);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .08);
+            color: var(--t)
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #a79bd6
+        }
+
+        option {
+            background: #1b1240;
+            color: #fff
+        }
+
+        input[type=checkbox] {
+            width: auto;
+            accent-color: #c026d3
+        }
+
+        input[type=color] {
+            padding: 2px;
+            height: 36px
+        }
+
+        :focus-visible {
+            outline: 2px solid #67e8f9;
+            outline-offset: 2px
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #7c3aed, #c026d3);
+            color: #fff;
+            border: 0;
+            padding: 9px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(124, 58, 237, .45);
+            transition: transform .15s
+        }
+
+        .btn:hover {
+            transform: translateY(-1px)
+        }
+
+        .btn.g {
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid var(--b);
+            box-shadow: none
+        }
+
+        .btn.s {
+            padding: 4px 10px;
+            font-size: 12.5px
+        }
+
+        .btn.d {
+            background: #e11d48
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px
+        }
+
+        .flex {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center
+        }
+
+        .ed {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 16px
+        }
+
+        @media(max-width:860px) {
+            .ed {
+                grid-template-columns: 1fr
+            }
+
+            .ed.pv #form {
+                display: none
+            }
+
+            .ed:not(.pv) #pvw {
+                display: none
+            }
+        }
+
+        @media(min-width:861px) {
+            .mob {
+                display: none
+            }
+        }
+
+        .item {
+            border: 1px solid var(--b);
+            border-radius: 14px;
+            padding: 10px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, .04)
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 7px 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, .12);
+            font-size: 13.5px
+        }
+
+        th {
+            color: var(--m)
+        }
+
+        td.r,
+        th.r {
+            text-align: right
+        }
+
+        .tw {
+            overflow-x: auto
+        }
+
+        .pill {
+            font-size: 12px;
+            padding: 2px 10px;
+            border-radius: 99px;
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid var(--b)
+        }
+
+        .stat {
+            font: 700 28px Sora, sans-serif;
+            color: #67e8f9
+        }
+
+        .err {
+            color: #fda4af;
+            font-size: 13px;
+            margin: 6px 0
+        }
+
+        #toast {
+            position: fixed;
+            bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 10, 50, .85);
+            border: 1px solid var(--b);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 14px;
+            display: none;
+            z-index: 20
+        }
+
+        dialog {
+            border: 1px solid var(--b);
+            border-radius: 20px;
+            background: rgba(22, 14, 52, .85);
+            color: var(--t);
+            max-width: min(96vw, 780px);
+            width: 100%;
+            padding: 16px
+        }
+
+        dialog::backdrop {
+            background: rgba(5, 2, 20, .55);
+            backdrop-filter: blur(6px)
+        }
+
+        #pvbox {
+            overflow: auto;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid var(--b);
+            border-radius: 16px;
+            padding: 14px;
+            max-height: 80vh
+        }
+
+        .rc {
+            background: var(--rb);
+            color: var(--rt);
+            font-family: var(--rf);
+            font-size: var(--rs);
+            padding: 26px;
+            margin: 0 auto;
+            width: var(--rw);
+            max-width: 100%;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, .45);
+            overflow: hidden;
+            overflow-wrap: anywhere;
+            border-radius: 6px;
+            line-height: 1.45
+        }
+
+        .rc .band {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: -26px -26px 16px;
+            padding: 20px 26px;
+            background: linear-gradient(120deg, var(--rp), var(--r2));
+            color: var(--ron)
+        }
+
+        .rc.mn .band {
+            background: none;
+            color: var(--rt);
+            border-bottom: 3px solid var(--rp)
+        }
+
+        .rc .bl {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .rc .bl img {
+            max-height: 48px;
+            max-width: 130px;
+            background: #fff;
+            border-radius: 6px;
+            padding: 3px
+        }
+
+        .rc .mk {
+            opacity: .9
+        }
+
+        .rc .bn {
+            font-size: 1.25em
+        }
+
+        .rc .sm {
+            font-size: .82em;
+            opacity: .85
+        }
+
+        .rc .br {
+            text-align: right
+        }
+
+        .rc .ti {
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase
+        }
+
+        .rc .ban {
+            border: 2px dashed var(--rp);
+            color: var(--rp);
+            text-align: center;
+            padding: 5px;
+            margin: 8px 0;
+            font-weight: 700
+        }
+
+        .rc .meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 10px;
+            align-items: center;
+            padding: 10px 12px;
+            border-radius: 10px;
+            background: var(--rp9)
+        }
+
+        .rc .meta span,
+        .rc .bx span {
+            display: block;
+            font-size: .75em;
+            opacity: .65
+        }
+
+        .rc .stamp {
+            justify-self: end;
+            border: 2.5px solid;
+            border-radius: 8px;
+            padding: 3px 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            transform: rotate(-5deg);
+            text-align: center
+        }
+
+        .rc .g2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 12px 0
+        }
+
+        .rc.thermal .g2 {
+            grid-template-columns: 1fr
+        }
+
+        .rc .bx {
+            border-left: 3px solid var(--rp);
+            padding-left: 10px
+        }
+
+        .rc table {
+            width: 100%;
+            border-collapse: collapse
+        }
+
+        .rc .it th {
+            background: var(--rp);
+            color: var(--ron);
+            padding: 8px;
+            text-align: left;
+            font-size: inherit;
+            border: 0
+        }
+
+        .rc .it th.r,
+        .rc .it td.r {
+            text-align: right
+        }
+
+        .rc .it td {
+            padding: 8px;
+            font-size: inherit;
+            border-bottom: 1px solid rgba(128, 128, 128, .25)
+        }
+
+        .rc .it tr:nth-child(even) td {
+            background: var(--rp5)
+        }
+
+        .rc .tot {
+            border-radius: 10px;
+            border: 1px solid var(--rp3);
+            overflow: hidden
+        }
+
+        .rc .tot>div {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 12px;
+            gap: 10px
+        }
+
+        .rc .tot .gt {
+            background: linear-gradient(120deg, var(--rp), var(--r2));
+            color: var(--ron);
+            font-size: 1.15em;
+            font-weight: 700
+        }
+
+        .rc .sig {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 16px;
+            margin-top: 22px
+        }
+
+        .rc .sig div {
+            border-top: 1px solid currentColor;
+            padding-top: 4px;
+            min-width: 150px;
+            font-size: .8em;
+            opacity: .8
+        }
+
+        .rc .fn {
+            text-align: center;
+            margin-top: 14px
+        }
+
+        .rc .dc {
+            text-align: center;
+            font-size: .7em;
+            opacity: .55;
+            margin-top: 6px
+        }
+
+        .rc.thermal .band {
+            flex-direction: column;
+            text-align: center
+        }
+
+        .rc.thermal .br {
+            text-align: center
+        }
+
+        #pa {
+            display: none
+        }
+
+        @media print {
+            body:before {
+                display: none
+            }
+
+            body {
+                background: #fff
+            }
+
+            body>*:not(#pa) {
+                display: none !important
+            }
+
+            #pa {
+                display: block
+            }
+
+            .rc {
+                box-shadow: none;
+                width: 100%;
+                max-width: none;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact
+            }
+
+            .rc tr {
+                break-inside: avoid
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo"><i></i>Paul Receipt Craft</div>
+        <nav id="nav"></nav><span class="tag">Demo mode · data stays in this browser</span>
+    </header>
+    <main id="main"></main>
+    <div id="toast" role="status"></div>
+    <dialog id="dlg"></dialog>
+    <div id="pa"></div>
+    <style id="pg"></style>
+    <script>
+        const $ = s => document.querySelector(s), uid = () => Math.random().toString(36).slice(2, 10);
+        const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const LOC = { NGN: 'en-NG', USD: 'en-US', GBP: 'en-GB', EUR: 'en-IE', GHS: 'en-GH', KES: 'en-KE', ZAR: 'en-ZA', CAD: 'en-CA', AUD: 'en-AU' };
+        const fmt = (c, cur) => new Intl.NumberFormat(LOC[cur] || 'en-US', { style: 'currency', currency: cur || 'NGN' }).format(c / 100);
+        const toC = v => Math.round((parseFloat(v) || 0) * 100), clone = o => JSON.parse(JSON.stringify(o));
+        const PRE = { 'Aurora': ['#6d28d9', '#ffffff', '#1e1b3a', '#0ea5e9'], 'Midnight': ['#a78bfa', '#0f0a2a', '#ede9fe', '#22d3ee'], 'Black & Gold': ['#b8860b', '#111111', '#f2ead3', '#f5d061'], 'Ocean': ['#0369a1', '#f0f9ff', '#0c2a3d', '#06b6d4'], 'Rose': ['#be185d', '#fff7fa', '#3b0a22', '#fb7185'], 'Emerald': ['#047857', '#f2fbf8', '#10302b', '#34d399'] };
+        const FONTS = { Serif: 'Georgia,serif', Sans: '"Segoe UI",system-ui,sans-serif', Mono: '"Courier New",monospace' };
+        const def = () => ({ biz: { name: '', email: '', phone: '', addr: '', tin: '', cur: 'NGN', taxOn: false, taxName: 'Tax', taxRate: '0', prefix: 'RCPT', foot: 'Thank you for your business.', logo: '' }, receipts: [], audit: [], tpl: { pc: '#6d28d9', pc2: '#0ea5e9', bg: '#ffffff', tx: '#1e1b3a', font: 'Sans', size: 13, paper: 'A5', layout: 'premium', show: { logo: 1, contact: 1, cust: 1, tax: 1, foot: 1, code: 1 } } });
+        let S; try { S = JSON.parse(localStorage.getItem('rc1')) || def() } catch (e) { S = def() }
+        if (!S.tpl.pc2) S.tpl = def().tpl;
+        const save = () => { try { localStorage.setItem('rc1', JSON.stringify(S)); return true } catch (e) { toast('Storage full. Use a smaller logo or export CSV and clear old drafts.'); return false } };
+        function toast(m) { const t = $('#toast'); t.textContent = m; t.style.display = 'block'; clearTimeout(t._h); t._h = setTimeout(() => t.style.display = 'none', 3200) }
+        const log = (ev, no) => { S.audit.push({ t: new Date().toISOString(), ev, no }); };
+        function calc(r) {
+            const rate = S.biz.taxOn ? (parseFloat(r.b?.taxRate ?? S.biz.taxRate) || 0) : 0, cl = x => Math.min(100, Math.max(0, parseFloat(x) || 0)); let sub = 0, idisc = 0;
+            r.items.forEach(i => { const g = Math.round((parseFloat(i.q) || 0) * toC(i.p)), d = Math.round(g * cl(i.d) / 100); i._n = g - d; sub += g; idisc += d });
+            const net = sub - idisc, od = r.odT === 'pct' ? Math.round(net * cl(r.odV) / 100) : Math.min(net, toC(r.odV)), taxable = net - od, chg = toC(r.chg); let tax, total;
+            if (r.inc) { tax = taxable - Math.round(taxable / (1 + rate / 100)); total = taxable + chg } else { tax = Math.round(taxable * rate / 100); total = taxable + tax + chg }
+            const paid = toC(r.paid), ref = (r.refunds || []).reduce((a, x) => a + x.a, 0);
+            return { sub, idisc, od, disc: idisc + od, base: r.inc ? taxable - tax : taxable, tax, chg, total, paid, ref, bal: Math.max(0, total - paid), rate }
+        }
+        const stat = r => { const k = calc(r); return r.state === 'void' ? 'Voided' : k.ref > 0 ? (k.ref >= k.paid ? 'Refunded' : 'Partially Refunded') : { paid: 'Paid', partial: 'Partially Paid', unpaid: 'Unpaid' }[r.ps] };
+        function nextNo() { const y = new Date().getFullYear(), p = `${S.biz.prefix || 'RCPT'}-${y}-`; let m = 0; S.receipts.forEach(r => { if (r.no.startsWith(p)) m = Math.max(m, parseInt(r.no.slice(p.length)) || 0) }); return p + String(m + 1).padStart(4, '0') }
+        function blank() { return { id: uid(), no: nextNo(), date: new Date().toISOString().slice(0, 10), ref: '', method: 'Bank transfer', ps: 'paid', paid: '', cust: { name: 'Walk-in customer', email: '', phone: '' }, items: [{ n: '', d: '', c: '', q: '1', p: '', dc: '0' }].map(i => ({ ...i, d: '0', desc: '' })), odT: 'pct', odV: '', inc: false, chg: '', notes: '', state: 'draft', refunds: [], b: { cur: S.biz.cur, taxRate: S.biz.taxRate, taxName: S.biz.taxName } } }
+        const rg = (h, a) => { const [r, g, b] = [1, 3, 5].map(i => parseInt(h.substr(i, 2), 16)); return `rgba(${r},${g},${b},${a})` };
+        const onC = h => { const [r, g, b] = [1, 3, 5].map(i => parseInt(h.substr(i, 2), 16)); return r * .299 + g * .587 + b * .114 > 150 ? '#111' : '#fff' };
+        const O = 'zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen'.split(' '), TY = '  twenty thirty forty fifty sixty seventy eighty ninety'.split(' ');
+        function wd(n) { if (n < 20) return O[n]; if (n < 100) return TY[n / 10 | 0] + (n % 10 ? '-' + O[n % 10] : ''); if (n < 1e3) return O[n / 100 | 0] + ' hundred' + (n % 100 ? ' and ' + wd(n % 100) : ''); for (const [v, s] of [[1e9, 'billion'], [1e6, 'million'], [1e3, 'thousand']]) if (n >= v) return wd(n / v | 0) + ' ' + s + (n % v ? ' ' + wd(n % v) : '') }
+        const CN = { NGN: ['naira', 'kobo'], USD: ['dollars', 'cents'], GBP: ['pounds', 'pence'], EUR: ['euros', 'cents'], GHS: ['cedis', 'pesewas'], KES: ['shillings', 'cents'], ZAR: ['rand', 'cents'], CAD: ['dollars', 'cents'], AUD: ['dollars', 'cents'] };
+        const inW = (c, cur) => { const [a, b] = CN[cur] || ['', ''], w = wd(Math.floor(c / 100)) || '', k = c % 100; return w.charAt(0).toUpperCase() + w.slice(1) + ' ' + a + (k ? ` and ${wd(k)} ${b}` : '') + ' only' };
+        function rcpt(r) {
+            const t = S.tpl, b = S.biz, k = calc(r), cur = r.b?.cur || b.cur, f = x => fmt(x, cur), sh = t.show, un = r.ps === 'unpaid', W = { A4: '720px', A5: '540px', Receipt: '400px', Thermal: '300px' }[t.paper], th = t.layout === 'thermal' || t.paper === 'Thermal', mn = t.layout === 'minimal', tn = r.b?.taxName || b.taxName, p2 = t.pc2 || t.pc, s = stat(r), sc = { Paid: '#15803d', 'Partially Paid': '#b45309', Unpaid: '#b91c1c', Voided: '#6b7280', Refunded: '#7c3aed', 'Partially Refunded': '#7c3aed' }[s];
+            const st = `--rb:${t.bg};--rt:${t.tx};--rp:${t.pc};--rp9:${rg(t.pc, .09)};--rp5:${rg(t.pc, .05)};--rp3:${rg(t.pc, .3)};--r2:${p2};--ron:${onC(t.pc)};--rf:${FONTS[t.font]};--rs:${t.size}px;--rw:${W}`;
+            return `<div class="rc ${th ? 'thermal' : ''} ${mn ? 'mn' : ''}" style="${st}"><div class="band"><div class="bl">${sh.logo && b.logo ? `<img src="${b.logo}" alt="">` : `<svg class="mk" viewBox="0 0 28 36" width="28" height="36"><path d="M0 0h28v36l-4.7-3.6L18.7 36 14 32.4 9.3 36l-4.6-3.6L0 36z" fill="${mn ? t.tx : onC(t.pc)}"/></svg>`}<div><b class="bn">${esc(b.name || 'Your business name')}</b>${sh.contact && b.tin ? `<div class="sm">Tax ID: ${esc(b.tin)}</div>` : ''}</div></div><div class="br"><div class="ti">${un ? 'Payment request' : 'Payment receipt'}</div><div class="sm">No. ${esc(r.no)}</div></div></div>
+ ${r.state === 'draft' ? '<div class="ban">DRAFT: not yet issued</div>' : ''}${un ? '<div class="ban">NOT A RECEIPT: no payment has been received</div>' : ''}
+ <div class="meta"><div><span>Date</span>${esc(r.date)}</div><div><span>Reference</span>${esc(r.ref || 'None')}</div><div><span>Payment method</span>${esc(r.method)}</div><div class="stamp" style="color:${sc}">${esc(s)}</div></div>
+ <div class="g2">${sh.contact ? `<div class="bx"><span>From</span><b>${esc(b.name || 'Your business')}</b><div>${esc(b.addr)}</div><div>${esc(b.phone)}</div><div>${esc(b.email)}</div></div>` : ''}${sh.cust ? `<div class="bx"><span>Billed to</span><b>${esc(r.cust.name || 'Walk-in customer')}</b><div>${esc(r.cust.email)}</div><div>${esc(r.cust.phone)}</div></div>` : ''}</div>
+ <table class="it"><tr><th>#</th><th>Item</th><th class="r">Qty</th><th class="r">Unit price</th><th class="r">Amount</th></tr>${r.items.filter(i => i.n).map((i, n) => `<tr><td>${n + 1}</td><td><b>${esc(i.n)}</b>${sh.code && i.c ? ` <small>(${esc(i.c)})</small>` : ''}${i.desc ? `<br><small>${esc(i.desc)}</small>` : ''}${parseFloat(i.d) > 0 ? `<br><small>${esc(i.d)}% discount applied</small>` : ''}</td><td class="r">${esc(i.q)}</td><td class="r">${f(toC(i.p))}</td><td class="r">${f(i._n ?? 0)}</td></tr>`).join('')}</table>
+ <div class="g2"><div class="bx"><span>Amount in words</span><i>${esc(inW(k.total, cur))}</i>${r.notes ? `<div style="margin-top:6px"><span>Notes</span>${esc(r.notes)}</div>` : ''}</div><div class="tot"><div><span>Subtotal</span><span>${f(k.sub)}</span></div>${k.disc ? `<div><span>Discount</span><span>-${f(k.disc)}</span></div>` : ''}${sh.tax && b.taxOn ? `<div><span>${esc(tn)} (${k.rate}%${r.inc ? ', included' : ''})</span><span>${f(k.tax)}</span></div>` : ''}${k.chg ? `<div><span>Delivery / charges</span><span>${f(k.chg)}</span></div>` : ''}<div class="gt"><span>Total</span><span>${f(k.total)}</span></div><div><span>Paid (${esc(r.method)})</span><span>${f(k.paid)}</span></div>${k.ref ? `<div><span>Refunded</span><span>-${f(k.ref)}</span></div>` : ''}<div><b>Balance due</b><b>${f(k.bal)}</b></div></div></div>
+ <div class="sig"><div>Authorized signature</div><div>Customer</div></div>${sh.foot ? `<p class="fn">${esc(b.foot)}</p>` : ''}<p class="dc">Issued with Paul Receipt Craft. A record of the seller's sale; not a bank, payment-provider or tax-authority document.</p></div>`
+        }
+        async function saveFile(name, blob) {
+            try { const d = window.claude && await claude.use('downloads'); if (d) { await d.save({ filename: name, data: blob }); return true } } catch (e) { if (e && e.code === 'declined') return false }
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); return true
+        }
+        async function pdfR(r, btn) {
+            if (!window.html2canvas || !window.jspdf) return toast('PDF tools did not load. Check your connection or use Print.');
+            const t = S.tpl, PW = { A4: 210, A5: 148, Receipt: 105, Thermal: 80 }[t.paper], FH = { A4: 297, A5: 210 }[t.paper]; if (btn) btn.disabled = true; toast('Preparing PDF...');
+            const host = document.createElement('div'); host.style.cssText = 'position:fixed;left:-10000px;top:0'; host.innerHTML = rcpt(r); document.body.appendChild(host);
+            try {
+                const el = host.firstChild; el.style.boxShadow = 'none'; el.style.borderRadius = '0'; const cv = await html2canvas(el, { scale: 3, backgroundColor: t.bg, useCORS: true, logging: false }), img = cv.toDataURL('image/jpeg', .95), ih = cv.height * PW / cv.width, ph = FH || ih, pdf = new jspdf.jsPDF({ unit: 'mm', format: [PW, ph], orientation: ph > PW ? 'p' : 'l' }); let pg = 0;
+                const draw = () => { pdf.setFillColor(t.bg); pdf.rect(0, 0, PW, ph, 'F'); pdf.addImage(img, 'JPEG', 0, -ph * pg, PW, ih) }; draw(); while (ih - ph * (pg + 1) > 1) { pg++; pdf.addPage([PW, ph]); draw() }
+                if (await saveFile(String(r.no).replace(/[^\w.-]+/g, '_') + '.pdf', pdf.output('blob'))) toast('PDF saved.')
+            }
+            catch (e) { toast('Could not create the PDF. Try Print instead.') } finally { host.remove(); if (btn) btn.disabled = false }
+        }
+        function printR(r) { $('#pg').textContent = `@media print{@page{margin:10mm;size:${S.tpl.paper === 'A4' ? 'A4' : S.tpl.paper === 'A5' ? 'A5' : '80mm auto'}}}`; $('#pa').innerHTML = rcpt(r); try { window.print(); toast('If no print dialog appears, use Download PDF.') } catch (e) { toast('Printing is blocked here. Use Download PDF.') } }
+        function view(r) { const k = calc(r), h = S.audit.filter(a => a.no === r.no); const d = $('#dlg'); d.innerHTML = `<div id="pvbox">${rcpt(r)}</div><details><summary>Audit trail (${h.length})</summary>${h.map(a => `<div class="tag">${esc(a.t.slice(0, 16).replace('T', ' '))} · ${esc(a.ev)}</div>`).join('')}</details><div class="flex" style="margin-top:8px"><button class="btn" id="vd">Download PDF</button><button class="btn g" id="vp">Print</button><button class="btn g" onclick="$('#dlg').close()">Close</button></div>`; d.showModal(); $('#vp').onclick = () => printR(r); $('#vd').onclick = e => pdfR(r, e.target) }
+        const V = {}; let cur, view_ = 'dash';
+        function go(v) { view_ = v; $('#nav').innerHTML = [['dash', 'Overview'], ['new', 'Create receipt'], ['list', 'Receipts'], ['cust', 'Customers'], ['set', 'Business']].map(([k, l]) => `<button class="${k === v ? 'on' : ''}" onclick="go('${k}')">${l}</button>`).join(''); if (v === 'new' && !cur) cur = blank(); V[v](); scrollTo(0, 0) }
+        V.dash = () => {
+            const R = S.receipts.filter(r => r.state === 'issued'), m = new Date().toISOString().slice(0, 7), tot = {}; R.forEach(r => { const k = calc(r), c = r.b.cur; tot[c] = (tot[c] || 0) + k.total - k.ref });
+            $('#main').innerHTML = `<div class="hero"><h1>Paul Receipt Craft</h1><p class="tag">Every payment. Professionally documented.</p></div>${!S.biz.name ? `<div class="card"><b>Start here:</b> add your business details so receipts carry your name. <button class="btn s" onclick="go('set')">Set up business</button></div>` : ''}<div class="row"><div class="card"><div class="tag">Receipts created</div><div class="stat">${S.receipts.length}</div></div><div class="card"><div class="tag">This month</div><div class="stat">${S.receipts.filter(r => r.date.startsWith(m)).length}</div></div><div class="card"><div class="tag">Recorded value (issued, net of refunds)</div><div class="stat" style="font-size:17px">${Object.entries(tot).map(([c, v]) => fmt(v, c)).join('<br>') || 'None yet'}</div></div></div><div class="card"><h2>Recent receipts</h2>${S.receipts.length ? tbl(S.receipts.slice(-5).reverse(), 1) : '<p class="tag">No receipts yet. Create your first in about two minutes.</p>'}<button class="btn" onclick="cur=null;go('new')">Create receipt</button></div>`
+        }
+        function tbl(L, mini) { return `<div class="tw"><table><tr><th>No.</th><th>Customer</th><th>Date</th><th class="r">Total</th><th>Status</th><th>State</th>${mini ? '' : '<th></th>'}</tr>${L.map(r => { const k = calc(r); return `<tr><td>${esc(r.no)}</td><td>${esc(r.cust.name)}</td><td>${esc(r.date)}</td><td class="r">${fmt(k.total, r.b.cur)}</td><td>${stat(r)}</td><td><span class="pill">${r.state}</span></td>${mini ? '' : `<td class="flex"><button class="btn g s" onclick="A('v','${r.id}')">View</button><button class="btn g s" onclick="A('p','${r.id}')">Print</button><button class="btn g s" onclick="A('c','${r.id}')">Duplicate</button>${r.state === 'draft' ? `<button class="btn g s" onclick="A('e','${r.id}')">Edit</button><button class="btn g s" onclick="A('x','${r.id}')">Delete</button>` : ''}${r.state === 'issued' ? `<button class="btn g s" onclick="A('f','${r.id}')">Refund</button><button class="btn g s" onclick="A('o','${r.id}')">Void</button>` : ''}</td>`}</tr>` }).join('')}</table></div>` }
+        function A(a, id) {
+            const r = S.receipts.find(x => x.id === id); if (a === 'v') view(r); if (a === 'p') printR(r);
+            if (a === 'c') { cur = clone(r); cur.id = uid(); cur.no = nextNo(); cur.state = 'draft'; cur.refunds = []; cur.date = new Date().toISOString().slice(0, 10); toast('Duplicated as a new draft with a new number.'); go('new') }
+            if (a === 'e') { cur = clone(r); go('new') }
+            if (a === 'x' && confirm('Delete this draft?')) { S.receipts = S.receipts.filter(x => x.id !== id); log('Draft deleted', r.no); save(); V.list() }
+            if (a === 'o' && confirm('Void this receipt? It stays on record, marked VOID.')) { r.state = 'void'; log('Voided', r.no); save(); V.list() }
+            if (a === 'f') { const k = calc(r), max = k.paid - k.ref, v = prompt(`Refund amount (max ${fmt(max, r.b.cur)}). The original sale is kept; the refund is recorded separately.`); if (v === null) return; const a2 = toC(v); if (a2 <= 0 || a2 > max) return toast('Enter an amount between 0 and the refundable balance.'); r.refunds.push({ a: a2, t: new Date().toISOString() }); log('Refund ' + fmt(a2, r.b.cur), r.no); save(); V.list(); toast('Refund recorded.') }
+        }
+        V.list = () => {
+            const q = (V.q || '').toLowerCase(), fs = V.fs || '', L = S.receipts.filter(r => (!q || (r.no + r.cust.name).toLowerCase().includes(q)) && (!fs || r.state === fs)).slice().reverse();
+            $('#main').innerHTML = `<h2>All receipts</h2><div class="card"><div class="flex"><input id="q" placeholder="Search number or customer" value="${esc(V.q || '')}" style="max-width:260px"><select id="fs" style="max-width:160px"><option value="">All states</option>${['draft', 'issued', 'void'].map(s => `<option ${s === fs ? 'selected' : ''}>${s}</option>`).join('')}</select><button class="btn g" id="csv">Export CSV</button></div></div><div class="card">${L.length ? tbl(L) : '<p class="tag">Nothing matches. Create a receipt or clear the filters.</p>'}</div>`;
+            $('#q').oninput = e => { V.q = e.target.value; const p = e.target.selectionStart; V.list(); $('#q').focus(); $('#q').setSelectionRange(p, p) }; $('#fs').onchange = e => { V.fs = e.target.value; V.list() };
+            $('#csv').onclick = () => { const sf = v => { v = String(v); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"' }; const rows = [['Number', 'Date', 'Customer', 'State', 'Status', 'Currency', 'Total', 'Paid', 'Balance', 'Refunded', 'Reference']].concat(L.map(r => { const k = calc(r); return [r.no, r.date, r.cust.name, r.state, stat(r), r.b.cur, k.total / 100, k.paid / 100, k.bal / 100, k.ref / 100, r.ref] })); saveFile('receipts.csv', new Blob([rows.map(x => x.map(sf).join(',')).join('\n')], { type: 'text/csv' })).then(ok => ok && toast('CSV saved.')) }
+        }
+        V.cust = () => {
+            const m = {}; S.receipts.filter(r => r.state !== 'void').forEach(r => { const n = r.cust.name || 'Walk-in customer', k = calc(r); (m[n + '|' + r.b.cur] = m[n + '|' + r.b.cur] || { n, c: r.b.cur, cnt: 0, tot: 0, bal: 0, e: r.cust.email }).cnt++; const o = m[n + '|' + r.b.cur]; o.tot += k.total; o.bal += k.bal });
+            $('#main').innerHTML = `<h2>Customers</h2><div class="card">${Object.values(m).length ? `<div class="tw"><table><tr><th>Name</th><th>Email</th><th class="r">Receipts</th><th class="r">Total</th><th class="r">Outstanding</th></tr>${Object.values(m).map(o => `<tr><td>${esc(o.n)}</td><td>${esc(o.e)}</td><td class="r">${o.cnt}</td><td class="r">${fmt(o.tot, o.c)}</td><td class="r">${fmt(o.bal, o.c)}</td></tr>`).join('')}</table></div>` : '<p class="tag">Customers appear here automatically from your receipts. Only details you type are stored.</p>'}</div>`
+        }
+        V.set = () => {
+            const b = S.biz, F = (k, l, ty = 'text') => `<div><label for="s_${k}">${l}</label><input id="s_${k}" data-k="${k}" type="${ty}" value="${esc(b[k])}"></div>`;
+            $('#main').innerHTML = `<h2>Business profile</h2><div class="card" id="bf"><div class="row">${F('name', 'Business name')}${F('email', 'Email', 'email')}${F('phone', 'Phone')}${F('addr', 'Address')}${F('tin', 'Registration / tax ID (optional)')}${F('prefix', 'Receipt number prefix')}${F('foot', 'Receipt footer message')}<div><label for="s_cur">Currency</label><select id="s_cur" data-k="cur">${Object.keys(LOC).map(c => `<option ${c === b.cur ? 'selected' : ''}>${c}</option>`).join('')}</select></div></div><label><input type="checkbox" id="s_tax" ${b.taxOn ? 'checked' : ''}> Charge tax on receipts</label><div class="row">${F('taxName', 'Tax name (e.g. VAT)')}${F('taxRate', 'Tax rate % (you set this; none is assumed)', 'number')}</div><label for="lg">Logo (PNG, JPG or WebP, max 300 KB)</label><input type="file" id="lg" accept="image/png,image/jpeg,image/webp">${b.logo ? `<p><img src="${b.logo}" alt="Current logo" style="max-height:50px"> <button class="btn g s" id="rl">Remove</button></p>` : ''}<p class="tag">Changes save automatically. New receipts use these details; issued receipts keep their own currency and tax rate.</p></div>
  <div class="card"><h3>Your data</h3><p class="tag">Receipts live only in this browser until you connect a backend. Clear browsing data and they are gone, so export CSV regularly.</p><button class="btn d" id="wipe">Delete all data</button></div>`;
- $('#bf').oninput=e=>{const k=e.target.dataset.k;if(k)b[k]=e.target.value;if(e.target.id==='s_tax')b.taxOn=e.target.checked;save()};
- $('#lg').onchange=e=>{const f=e.target.files[0];if(!f)return;if(!/^image\/(png|jpeg|webp)$/.test(f.type)||f.size>307200)return toast('Use a PNG, JPG or WebP under 300 KB.');const R=new FileReader();R.onload=()=>{b.logo=R.result;save()&&V.set()};R.readAsDataURL(f)};
- if($('#rl'))$('#rl').onclick=()=>{b.logo='';save();V.set()};$('#wipe').onclick=()=>{if(confirm('Delete every receipt and setting in this browser? This cannot be undone.')){S=def();save();cur=null;go('dash')}}}
-V.new=()=>{const r=cur,t=S.tpl,sw=(k,l)=>`<label style="display:inline-block;margin-right:12px"><input type="checkbox" data-t="show.${k}" ${t.show[k]?'checked':''}> ${l}</label>`,C=(k,l)=>`<div><label for="c_${k}">${l}</label><input id="c_${k}" type="color" data-t="${k}" value="${t[k]}"></div>`,locked=r.state==='issued';
- $('#main').innerHTML=`<div class="flex mob" style="margin-bottom:8px"><button class="btn g" onclick="$('.ed').classList.remove('pv')">Form</button><button class="btn g" onclick="$('.ed').classList.add('pv');pv()">Preview</button></div><div class="ed"><div id="form">
+            $('#bf').oninput = e => { const k = e.target.dataset.k; if (k) b[k] = e.target.value; if (e.target.id === 's_tax') b.taxOn = e.target.checked; save() };
+            $('#lg').onchange = e => { const f = e.target.files[0]; if (!f) return; if (!/^image\/(png|jpeg|webp)$/.test(f.type) || f.size > 307200) return toast('Use a PNG, JPG or WebP under 300 KB.'); const R = new FileReader(); R.onload = () => { b.logo = R.result; save() && V.set() }; R.readAsDataURL(f) };
+            if ($('#rl')) $('#rl').onclick = () => { b.logo = ''; save(); V.set() }; $('#wipe').onclick = () => { if (confirm('Delete every receipt and setting in this browser? This cannot be undone.')) { S = def(); save(); cur = null; go('dash') } }
+        }
+        V.new = () => {
+            const r = cur, t = S.tpl, sw = (k, l) => `<label style="display:inline-block;margin-right:12px"><input type="checkbox" data-t="show.${k}" ${t.show[k] ? 'checked' : ''}> ${l}</label>`, C = (k, l) => `<div><label for="c_${k}">${l}</label><input id="c_${k}" type="color" data-t="${k}" value="${t[k]}"></div>`, locked = r.state === 'issued';
+            $('#main').innerHTML = `<div class="flex mob" style="margin-bottom:8px"><button class="btn g" onclick="$('.ed').classList.remove('pv')">Form</button><button class="btn g" onclick="$('.ed').classList.add('pv');pv()">Preview</button></div><div class="ed"><div id="form">
  <div class="card"><h3>Receipt</h3><div class="row"><div><label for="f_no">Receipt number</label><input id="f_no" data-k="no" value="${esc(r.no)}"></div><div><label for="f_dt">Date</label><input id="f_dt" type="date" data-k="date" value="${esc(r.date)}"></div><div><label for="f_rf">Transaction reference</label><input id="f_rf" data-k="ref" value="${esc(r.ref)}"></div></div></div>
- <div class="card"><h3>Customer</h3><div class="row"><div><label for="f_cn">Name</label><input id="f_cn" data-k="cust.name" value="${esc(r.cust.name)}"></div><div><label for="f_ce">Email</label><input id="f_ce" data-k="cust.email" value="${esc(r.cust.email)}"></div><div><label for="f_cp">Phone</label><input id="f_cp" data-k="cust.phone" value="${esc(r.cust.phone)}"></div></div><div class="flex" style="margin-top:6px">${[...new Set(S.receipts.map(x=>x.cust.name))].slice(-5).map(n=>`<button class="btn g s" data-pick="${esc(n)}">${esc(n)}</button>`).join('')}</div></div>
+ <div class="card"><h3>Customer</h3><div class="row"><div><label for="f_cn">Name</label><input id="f_cn" data-k="cust.name" value="${esc(r.cust.name)}"></div><div><label for="f_ce">Email</label><input id="f_ce" data-k="cust.email" value="${esc(r.cust.email)}"></div><div><label for="f_cp">Phone</label><input id="f_cp" data-k="cust.phone" value="${esc(r.cust.phone)}"></div></div><div class="flex" style="margin-top:6px">${[...new Set(S.receipts.map(x => x.cust.name))].slice(-5).map(n => `<button class="btn g s" data-pick="${esc(n)}">${esc(n)}</button>`).join('')}</div></div>
  <div class="card"><h3>Items</h3><div id="items"></div><button class="btn g" id="add">Add item</button></div>
- <div class="card"><h3>Discounts, tax and charges</h3><div class="row"><div><label for="f_ot">Order discount type</label><select id="f_ot" data-k="odT"><option value="pct" ${r.odT==='pct'?'selected':''}>Percent</option><option value="fix" ${r.odT==='fix'?'selected':''}>Fixed amount</option></select></div><div><label for="f_ov">Order discount</label><input id="f_ov" type="number" min="0" step="0.01" data-k="odV" value="${esc(r.odV)}"></div><div><label for="f_ch">Delivery / service charge</label><input id="f_ch" type="number" min="0" step="0.01" data-k="chg" value="${esc(r.chg)}"></div></div><label><input type="checkbox" data-k="inc" ${r.inc?'checked':''}> Prices already include tax</label>${S.biz.taxOn?'':'<p class="tag">Tax is off. Turn it on under Business.</p>'}</div>
- <div class="card"><h3>Payment</h3><div class="row"><div><label for="f_ps">Payment status</label><select id="f_ps" data-k="ps">${[['paid','Paid'],['partial','Partially paid'],['unpaid','Unpaid (payment request)']].map(([v,l])=>`<option value="${v}" ${r.ps===v?'selected':''}>${l}</option>`).join('')}</select></div><div><label for="f_pm">Method</label><select id="f_pm" data-k="method">${['Cash','Bank transfer','Card','USSD','POS','Mobile money','Payment gateway','Other'].map(m=>`<option ${m===r.method?'selected':''}>${m}</option>`).join('')}</select></div><div><label for="f_pd">Amount paid</label><input id="f_pd" type="number" min="0" step="0.01" data-k="paid" value="${esc(r.paid)}"></div></div><label for="f_nt">Notes</label><textarea id="f_nt" data-k="notes" rows="2">${esc(r.notes)}</textarea><div id="sum" class="tag" style="margin-top:6px"></div></div>
- <details class="card"><summary><b>Customize design</b></summary><div class="flex" style="margin:8px 0">${Object.keys(PRE).map(n=>`<button class="btn g s" data-pre="${n}">${n}</button>`).join('')}</div><div class="row">${C('pc','Accent')}${C('pc2','Secondary')}${C('bg','Background')}${C('tx','Text')}<div><label for="c_font">Font</label><select id="c_font" data-t="font">${Object.keys(FONTS).map(n=>`<option ${n===t.font?'selected':''}>${n}</option>`).join('')}</select></div><div><label for="c_size">Text size</label><input id="c_size" type="number" min="10" max="18" data-t="size" value="${t.size}"></div><div><label for="c_pa">Paper</label><select id="c_pa" data-t="paper">${['A4','A5','Receipt','Thermal'].map(n=>`<option ${n===t.paper?'selected':''}>${n}</option>`).join('')}</select></div><div><label for="c_ly">Layout</label><select id="c_ly" data-t="layout">${['premium','minimal','thermal'].map(n=>`<option ${n===t.layout?'selected':''}>${n}</option>`).join('')}</select></div></div><div style="margin-top:8px">${sw('logo','Logo')}${sw('contact','Contact')}${sw('cust','Customer')}${sw('tax','Tax breakdown')}${sw('code','Item codes')}${sw('foot','Footer')}</div><div id="ct" class="err"></div></details>
+ <div class="card"><h3>Discounts, tax and charges</h3><div class="row"><div><label for="f_ot">Order discount type</label><select id="f_ot" data-k="odT"><option value="pct" ${r.odT === 'pct' ? 'selected' : ''}>Percent</option><option value="fix" ${r.odT === 'fix' ? 'selected' : ''}>Fixed amount</option></select></div><div><label for="f_ov">Order discount</label><input id="f_ov" type="number" min="0" step="0.01" data-k="odV" value="${esc(r.odV)}"></div><div><label for="f_ch">Delivery / service charge</label><input id="f_ch" type="number" min="0" step="0.01" data-k="chg" value="${esc(r.chg)}"></div></div><label><input type="checkbox" data-k="inc" ${r.inc ? 'checked' : ''}> Prices already include tax</label>${S.biz.taxOn ? '' : '<p class="tag">Tax is off. Turn it on under Business.</p>'}</div>
+ <div class="card"><h3>Payment</h3><div class="row"><div><label for="f_ps">Payment status</label><select id="f_ps" data-k="ps">${[['paid', 'Paid'], ['partial', 'Partially paid'], ['unpaid', 'Unpaid (payment request)']].map(([v, l]) => `<option value="${v}" ${r.ps === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div><div><label for="f_pm">Method</label><select id="f_pm" data-k="method">${['Cash', 'Bank transfer', 'Card', 'USSD', 'POS', 'Mobile money', 'Payment gateway', 'Other'].map(m => `<option ${m === r.method ? 'selected' : ''}>${m}</option>`).join('')}</select></div><div><label for="f_pd">Amount paid</label><input id="f_pd" type="number" min="0" step="0.01" data-k="paid" value="${esc(r.paid)}"></div></div><label for="f_nt">Notes</label><textarea id="f_nt" data-k="notes" rows="2">${esc(r.notes)}</textarea><div id="sum" class="tag" style="margin-top:6px"></div></div>
+ <details class="card"><summary><b>Customize design</b></summary><div class="flex" style="margin:8px 0">${Object.keys(PRE).map(n => `<button class="btn g s" data-pre="${n}">${n}</button>`).join('')}</div><div class="row">${C('pc', 'Accent')}${C('pc2', 'Secondary')}${C('bg', 'Background')}${C('tx', 'Text')}<div><label for="c_font">Font</label><select id="c_font" data-t="font">${Object.keys(FONTS).map(n => `<option ${n === t.font ? 'selected' : ''}>${n}</option>`).join('')}</select></div><div><label for="c_size">Text size</label><input id="c_size" type="number" min="10" max="18" data-t="size" value="${t.size}"></div><div><label for="c_pa">Paper</label><select id="c_pa" data-t="paper">${['A4', 'A5', 'Receipt', 'Thermal'].map(n => `<option ${n === t.paper ? 'selected' : ''}>${n}</option>`).join('')}</select></div><div><label for="c_ly">Layout</label><select id="c_ly" data-t="layout">${['premium', 'minimal', 'thermal'].map(n => `<option ${n === t.layout ? 'selected' : ''}>${n}</option>`).join('')}</select></div></div><div style="margin-top:8px">${sw('logo', 'Logo')}${sw('contact', 'Contact')}${sw('cust', 'Customer')}${sw('tax', 'Tax breakdown')}${sw('code', 'Item codes')}${sw('foot', 'Footer')}</div><div id="ct" class="err"></div></details>
  <div id="er" class="err" role="alert"></div><div class="flex"><button class="btn g" id="sd">Save draft</button><button class="btn" id="is">Issue receipt</button><button class="btn" id="dl">Download PDF</button><button class="btn g" id="pr">Print</button></div></div>
  <div id="pvw"><div class="flex" style="margin-bottom:6px"><label style="margin:0">Zoom</label><input type="range" id="zm" min="50" max="130" value="100" style="max-width:160px"></div><div id="pvbox"><div id="pv"></div></div></div></div>`;
- items();pv();const form=$('#form');
- form.oninput=form.onchange=e=>{const d=e.target.dataset;if(d.i!==undefined){cur.items[d.i][d.f]=e.target.value}else if(d.k){const v=e.target.type==='checkbox'?e.target.checked:e.target.value;if(d.k==='inc'||d.k==='ps'||d.k==='odT'||d.k.includes('.')||true){const p=d.k.split('.');let o=cur;while(p.length>1)o=o[p.shift()];o[p[0]]=v}
-  if(d.k==='ps'){if(v==='paid')$('#f_pd').value=cur.paid=(calc(cur).total/100).toFixed(2);if(v==='unpaid')$('#f_pd').value=cur.paid=''}}
-  else if(d.t){const p=d.t.split('.');let o=S.tpl;while(p.length>1)o=o[p.shift()];o[p[0]]=e.target.type==='checkbox'?+e.target.checked:e.target.type==='number'?+e.target.value:e.target.value;save()}pv()};
- form.onclick=e=>{const d=e.target.dataset;if(d.pre){const p=PRE[d.pre];[S.tpl.pc,S.tpl.bg,S.tpl.tx,S.tpl.pc2]=p;save();V.new();$('#form details').open=true}if(d.pick!==undefined){const x=S.receipts.slice().reverse().find(x=>x.cust.name===d.pick);cur.cust=clone(x.cust);V.new()}};
- $('#add').onclick=()=>{cur.items.push({n:'',d:'0',desc:'',c:'',q:'1',p:''});items();pv()};
- $('#zm').oninput=e=>{$('#pv').style.zoom=e.target.value/100};
- const sv=iss=>{const er=[],k=calc(cur);cur.b={cur:S.biz.cur,taxRate:S.biz.taxRate,taxName:S.biz.taxName};if(!cur.no.trim())er.push('Enter a receipt number.');if(S.receipts.some(x=>x.no===cur.no&&x.id!==cur.id))er.push('That receipt number is already used. Pick another.');
-  if(iss){if(!cur.items.some(i=>i.n.trim()&&toC(i.p)>0))er.push('Add at least one item with a name and price.');if(cur.ps==='paid'&&k.paid<k.total)er.push('Status is Paid but the amount paid is less than the total. Change the status or the amount.');if(cur.ps==='partial'&&!(k.paid>0&&k.paid<k.total))er.push('Partially paid needs an amount above 0 and below the total.');if(cur.ps==='unpaid'&&k.paid>0)er.push('Unpaid receipts cannot have an amount paid.');if(k.paid>k.total)er.push('Amount paid is more than the total.')}
-  $('#er').innerHTML=er.map(esc).join('<br>');if(er.length)return;cur.state=iss?'issued':'draft';const i=S.receipts.findIndex(x=>x.id===cur.id);if(i>=0)S.receipts[i]=clone(cur);else S.receipts.push(clone(cur));log(iss?'Issued':'Draft saved',cur.no);if(save()){toast(iss?'Receipt issued. Print or save it as PDF.':'Draft saved.');if(iss){view(S.receipts.find(x=>x.id===cur.id));cur=null;go('list')}}};
- $('#sd').onclick=()=>sv(0);$('#is').onclick=()=>sv(1);$('#pr').onclick=()=>printR(cur);$('#dl').onclick=e=>pdfR(cur,e.target);
- if(locked)toast('Issued receipts are locked. Duplicate to make a corrected one.')}
-function items(){$('#items').innerHTML=cur.items.map((i,n)=>`<div class="item"><div class="row"><div><label for="i${n}n">Item name</label><input id="i${n}n" data-i="${n}" data-f="n" value="${esc(i.n)}"></div><div><label for="i${n}q">Qty</label><input id="i${n}q" type="number" min="0" step="any" data-i="${n}" data-f="q" value="${esc(i.q)}"></div><div><label for="i${n}p">Unit price</label><input id="i${n}p" type="number" min="0" step="0.01" data-i="${n}" data-f="p" value="${esc(i.p)}"></div><div><label for="i${n}d">Discount %</label><input id="i${n}d" type="number" min="0" max="100" data-i="${n}" data-f="d" value="${esc(i.d)}"></div></div><div class="row"><div><label for="i${n}s">Description</label><input id="i${n}s" data-i="${n}" data-f="desc" value="${esc(i.desc)}"></div><div><label for="i${n}c">SKU / code</label><input id="i${n}c" data-i="${n}" data-f="c" value="${esc(i.c)}"></div></div><div class="flex" style="margin-top:6px"><button class="btn g s" onclick="mv(${n},-1)" aria-label="Move up">↑</button><button class="btn g s" onclick="mv(${n},1)" aria-label="Move down">↓</button><button class="btn g s" onclick="cur.items.splice(${n}+1,0,clone(cur.items[${n}]));items();pv()">Duplicate</button><button class="btn g s" onclick="if(cur.items.length>1){cur.items.splice(${n},1);items();pv()}">Remove</button></div></div>`).join('')}
-function mv(n,d){const j=n+d;if(j<0||j>=cur.items.length)return;[cur.items[n],cur.items[j]]=[cur.items[j],cur.items[n]];items();pv()}
-function pv(){const k=calc(cur),f=x=>fmt(x,S.biz.cur);$('#pv').innerHTML=rcpt(cur);$('#sum').textContent=`Total ${f(k.total)} · Paid ${f(k.paid)} · Balance ${f(k.bal)}`;const lum=h=>{const c=[1,3,5].map(i=>{let v=parseInt(h.substr(i,2),16)/255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4});return .2126*c[0]+.7152*c[1]+.0722*c[2]},ct=(Math.max(lum(S.tpl.tx),lum(S.tpl.bg))+.05)/(Math.min(lum(S.tpl.tx),lum(S.tpl.bg))+.05),ca=(Math.max(lum(S.tpl.pc),lum(S.tpl.bg))+.05)/(Math.min(lum(S.tpl.pc),lum(S.tpl.bg))+.05);if($('#ct'))$('#ct').textContent=ct<4.5?'Text and background contrast is low. Choose colors that are easier to read.':ca<3?'Accent color is hard to see on this background.':''}
-go('dash');
-</script></body></html>
+            items(); pv(); const form = $('#form');
+            form.oninput = form.onchange = e => {
+                const d = e.target.dataset; if (d.i !== undefined) { cur.items[d.i][d.f] = e.target.value } else if (d.k) {
+                    const v = e.target.type === 'checkbox' ? e.target.checked : e.target.value; if (d.k === 'inc' || d.k === 'ps' || d.k === 'odT' || d.k.includes('.') || true) { const p = d.k.split('.'); let o = cur; while (p.length > 1) o = o[p.shift()]; o[p[0]] = v }
+                    if (d.k === 'ps') { if (v === 'paid') $('#f_pd').value = cur.paid = (calc(cur).total / 100).toFixed(2); if (v === 'unpaid') $('#f_pd').value = cur.paid = '' }
+                }
+                else if (d.t) { const p = d.t.split('.'); let o = S.tpl; while (p.length > 1) o = o[p.shift()]; o[p[0]] = e.target.type === 'checkbox' ? +e.target.checked : e.target.type === 'number' ? +e.target.value : e.target.value; save() } pv()
+            };
+            form.onclick = e => { const d = e.target.dataset; if (d.pre) { const p = PRE[d.pre];[S.tpl.pc, S.tpl.bg, S.tpl.tx, S.tpl.pc2] = p; save(); V.new(); $('#form details').open = true } if (d.pick !== undefined) { const x = S.receipts.slice().reverse().find(x => x.cust.name === d.pick); cur.cust = clone(x.cust); V.new() } };
+            $('#add').onclick = () => { cur.items.push({ n: '', d: '0', desc: '', c: '', q: '1', p: '' }); items(); pv() };
+            $('#zm').oninput = e => { $('#pv').style.zoom = e.target.value / 100 };
+            const sv = iss => {
+                const er = [], k = calc(cur); cur.b = { cur: S.biz.cur, taxRate: S.biz.taxRate, taxName: S.biz.taxName }; if (!cur.no.trim()) er.push('Enter a receipt number.'); if (S.receipts.some(x => x.no === cur.no && x.id !== cur.id)) er.push('That receipt number is already used. Pick another.');
+                if (iss) { if (!cur.items.some(i => i.n.trim() && toC(i.p) > 0)) er.push('Add at least one item with a name and price.'); if (cur.ps === 'paid' && k.paid < k.total) er.push('Status is Paid but the amount paid is less than the total. Change the status or the amount.'); if (cur.ps === 'partial' && !(k.paid > 0 && k.paid < k.total)) er.push('Partially paid needs an amount above 0 and below the total.'); if (cur.ps === 'unpaid' && k.paid > 0) er.push('Unpaid receipts cannot have an amount paid.'); if (k.paid > k.total) er.push('Amount paid is more than the total.') }
+                $('#er').innerHTML = er.map(esc).join('<br>'); if (er.length) return; cur.state = iss ? 'issued' : 'draft'; const i = S.receipts.findIndex(x => x.id === cur.id); if (i >= 0) S.receipts[i] = clone(cur); else S.receipts.push(clone(cur)); log(iss ? 'Issued' : 'Draft saved', cur.no); if (save()) { toast(iss ? 'Receipt issued. Print or save it as PDF.' : 'Draft saved.'); if (iss) { view(S.receipts.find(x => x.id === cur.id)); cur = null; go('list') } }
+            };
+            $('#sd').onclick = () => sv(0); $('#is').onclick = () => sv(1); $('#pr').onclick = () => printR(cur); $('#dl').onclick = e => pdfR(cur, e.target);
+            if (locked) toast('Issued receipts are locked. Duplicate to make a corrected one.')
+        }
+        function items() { $('#items').innerHTML = cur.items.map((i, n) => `<div class="item"><div class="row"><div><label for="i${n}n">Item name</label><input id="i${n}n" data-i="${n}" data-f="n" value="${esc(i.n)}"></div><div><label for="i${n}q">Qty</label><input id="i${n}q" type="number" min="0" step="any" data-i="${n}" data-f="q" value="${esc(i.q)}"></div><div><label for="i${n}p">Unit price</label><input id="i${n}p" type="number" min="0" step="0.01" data-i="${n}" data-f="p" value="${esc(i.p)}"></div><div><label for="i${n}d">Discount %</label><input id="i${n}d" type="number" min="0" max="100" data-i="${n}" data-f="d" value="${esc(i.d)}"></div></div><div class="row"><div><label for="i${n}s">Description</label><input id="i${n}s" data-i="${n}" data-f="desc" value="${esc(i.desc)}"></div><div><label for="i${n}c">SKU / code</label><input id="i${n}c" data-i="${n}" data-f="c" value="${esc(i.c)}"></div></div><div class="flex" style="margin-top:6px"><button class="btn g s" onclick="mv(${n},-1)" aria-label="Move up">↑</button><button class="btn g s" onclick="mv(${n},1)" aria-label="Move down">↓</button><button class="btn g s" onclick="cur.items.splice(${n}+1,0,clone(cur.items[${n}]));items();pv()">Duplicate</button><button class="btn g s" onclick="if(cur.items.length>1){cur.items.splice(${n},1);items();pv()}">Remove</button></div></div>`).join('') }
+        function mv(n, d) { const j = n + d; if (j < 0 || j >= cur.items.length) return;[cur.items[n], cur.items[j]] = [cur.items[j], cur.items[n]]; items(); pv() }
+        function pv() { const k = calc(cur), f = x => fmt(x, S.biz.cur); $('#pv').innerHTML = rcpt(cur); $('#sum').textContent = `Total ${f(k.total)} · Paid ${f(k.paid)} · Balance ${f(k.bal)}`; const lum = h => { const c = [1, 3, 5].map(i => { let v = parseInt(h.substr(i, 2), 16) / 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4 }); return .2126 * c[0] + .7152 * c[1] + .0722 * c[2] }, ct = (Math.max(lum(S.tpl.tx), lum(S.tpl.bg)) + .05) / (Math.min(lum(S.tpl.tx), lum(S.tpl.bg)) + .05), ca = (Math.max(lum(S.tpl.pc), lum(S.tpl.bg)) + .05) / (Math.min(lum(S.tpl.pc), lum(S.tpl.bg)) + .05); if ($('#ct')) $('#ct').textContent = ct < 4.5 ? 'Text and background contrast is low. Choose colors that are easier to read.' : ca < 3 ? 'Accent color is hard to see on this background.' : '' }
+        go('dash');
+    </script>
+</body>
+
+</html>
